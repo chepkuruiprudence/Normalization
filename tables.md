@@ -1,4 +1,4 @@
-# 📚 Database Normalization
+# Database Normalization
 
 Database normalization is the process of organizing the attributes of the database to reduce or eliminate data redundancy (having the same data but at different places). It helps improve database efficiency, consistency, and accuracy.
 
@@ -8,14 +8,14 @@ Database normalization is the process of organizing the attributes of the databa
 - Simplification of data management.
 - Improved database design.
 
-## 📌 Why Do We Need Normalization?
+##  Why Do We Need Normalization?
 - Insertion anomalies.
 - Deletion anomalies.
 - Update anomalies.
 
 ---
 
-## 📊 Normal Forms in DBMS
+## Normal Forms in DBMS
 
 | **Normal Form**               | **Description** |
 |:-----------------------------|:----------------|
@@ -28,7 +28,7 @@ Database normalization is the process of organizing the attributes of the databa
 
 ---
 
-## 📌 First Normal Form (1NF)
+##  First Normal Form (1NF)
 
 **A relation is in 1NF if:**
 - All attributes contain atomic values.
@@ -58,10 +58,13 @@ Database normalization is the process of organizing the attributes of the databa
 
 ---
 
-## 📌 Second Normal Form (2NF)
+##  Second Normal Form (2NF)
 
 **For a table to be in 2NF:**
 1. It must be in 1NF.
+-	All columns contain single, indivisible values.
+-	No repeating groups of columns.
+
 2. Eliminate partial dependencies — no non-prime attribute should depend on a part of a composite primary key.
 
 ### Example:
@@ -103,13 +106,26 @@ Database normalization is the process of organizing the attributes of the databa
 | 4         | C1         |
 | 2         | C5         |
 
+Now, each table is in 2NF:
+- The Course Table ensures that COURSE_FEE depends only on COURSE_NO.
+-	The Student-Course Table ensures there are no partial dependencies because it only relates students to courses.
+Now, the COURSE_FEE is no longer repeated in every row, and each table is free from partial dependencies. This makes the database more efficient and easier to maintain.
+
+
+
 ---
 
-## 📌 Third Normal Form (3NF)
+## Third Normal Form (3NF)
 
 **A table is in 3NF if:**
 1. It is in 2NF.
 2. No transitive dependency exists for non-prime attributes.
+
+###Conditions for a Table to be in 3NF
+A table is in Third Normal Form (3NF) if, for every non-trivial functional dependency X→Y, at least one of the following holds:
+-	X is a superkey: This means that the attribute(s) on the left-hand side of the functional dependency (X) must be a superkey (a key that uniquely identifies a tuple in the table).
+-	Y is a prime attribute: This means that every element of the attribute set Y must be part of a candidate key (i.e., a prime attribute).
+
 
 **A functional dependency X → Y violates 3NF if:**
 - X is not a super key and
@@ -148,7 +164,9 @@ Database normalization is the process of organizing the attributes of the databa
 
 ---
 
-# ⚙️ ACID Properties in DBMS
+# ACID Properties in DBMS
+
+ACID stands for Atomicity, Consistency, Isolation, and Durability. These four key properties define how a transaction should be processed in a reliable and predictable manner, ensuring that the database remains consistent, even in cases of failures or concurrent accesses. 
 
 **ACID stands for:**
 - **Atomicity**: All operations of a transaction are completed; otherwise, none are.
@@ -156,7 +174,7 @@ Database normalization is the process of organizing the attributes of the databa
 - **Isolation**: Ensures transactions occur independently.
 - **Durability**: Changes made by a committed transaction persist.
 
-## 📌 How ACID Properties Impact DBMS Design and Operation
+##  How ACID Properties Impact DBMS Design and Operation
 
 - **Data Integrity and Consistency**
 - **Recovery and Fault Tolerance**
@@ -170,16 +188,17 @@ Database normalization is the process of organizing the attributes of the databa
 
 ##  Advantages of ACID Properties
 
-- Data Consistency
-- Data Integrity
-- Concurrency Control
-- Reliable Recovery Mechanisms
+-	Data Consistency: ACID properties ensure that the data remains consistent and accurate after any transaction execution.
+-	Data Integrity: It maintains the integrity of the data by ensuring that any changes to the database are permanent and cannot be lost.
+-	Concurrency Control: ACID properties help to manage multiple transactions occurring concurrently by preventing interference between them.
+-	Recovery: ACID properties ensure that in case of any failure or crash, the system can recover the data up to the point of failure or crash.
 
 ## Disadvantages of ACID Properties
 
-- Performance Overhead
--  Complexity in distributed systems
--  Scalability limitations
+-	Performance Overhead: ACID properties can introduce performance costs, especially when enforcing isolation between transactions or ensuring atomicity.
+-	Complexity: Maintaining ACID properties in distributed systems (like microservices or cloud environments) can be complex and may require sophisticated solutions like distributed locking or transaction coordination.
+-	Scalability Issues: ACID properties can pose scalability challenges, particularly in systems with high transaction volumes, where traditional relational databases may struggle under load.
+
 
 
 
