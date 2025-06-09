@@ -200,6 +200,33 @@ ACID stands for Atomicity, Consistency, Isolation, and Durability. These four ke
 -	Scalability Issues: ACID properties can pose scalability challenges, particularly in systems with high transaction volumes, where traditional relational databases may struggle under load.
 
 
+# Examples of the Four ACID Properties
+
+## Atomicity: 
+
+**Example:** Transfer of Ksh100 from Account X to Account Y.  
+If the debit operation (T1) from Account X succeeds but the credit operation (T2) to Account Y fails, the entire transaction is rolled back so that no money is moved at all, avoiding partial updates.
+
+## Consistency: Maintaining Valid Data States
+
+**Example:** Total bank balance before a transaction is ksh 700 (Account X: ksh 500 + Account Y: ksh 200).  
+After transferring 100 from X to Y, the total should remain ksh 700 (Account X: ksh 400 + Account Y: ksh 300).  
+If the transaction violates rules (e.g., only debiting X without crediting Y), it is rejected, ensuring the database stays consistent.
+
+## Isolation: Ensuring Concurrent Transactions Don't Interfere
+
+**Example:**  
+Transaction T transfers ksh 50 from Account X to Account Y (initially both $500).  
+Transaction T'' simultaneously reads the balances and sums them. Without isolation, T'' might see outdated values (ksh 500 + ksh 500 = ksh 1000) while T is still running, leading to incorrect data.  
+Isolation ensures T'' sees either the balances before T starts or after T commits, preventing inconsistent reads.
+
+## Durability: Persisting Changes
+
+**Example:** After a successful money transfer from Account A to Account B, the changes are saved to disk.  
+Even if the system crashes immediately after, the data remains intact and recoverable, ensuring no data loss.
+
+
+
 
 
 > **Note:** Database normalization and ACID properties are essential for ensuring data accuracy, minimizing redundancy, and handling transactions reliably, especially in high-volume or mission-critical systems.
