@@ -226,7 +226,7 @@ If the transaction violates rules (e.g., only debiting X without crediting Y), i
 ## Isolation: Ensuring Concurrent Transactions Don't Interfere
 
 **Example:**  
-Transaction T transfers ksh 50 from Account X to Account Y (initially both $500).  
+Transaction T transfers ksh 50 from Account X to Account Y (initially both 500).  
 Transaction T'' simultaneously reads the balances and sums them. Without isolation, T'' might see outdated values (ksh 500 + ksh 500 = ksh 1000) while T is still running, leading to incorrect data.  
 Isolation ensures T'' sees either the balances before T starts or after T commits, preventing inconsistent reads.
 
